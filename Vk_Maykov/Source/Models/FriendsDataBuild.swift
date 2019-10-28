@@ -1,5 +1,5 @@
 //
-//  Friends.swift
+//  FriendsDataBuild.swift
 //  Vk_Maykov
 //
 //  Created by Юрий on 23/10/2019.
@@ -8,9 +8,8 @@
 
 import UIKit
 
-class Friends {
-    static let shared = Friends()
-    private init() {}
+class FriendsDataBuild {
+
     var friends:[FriendModel] = []
     
     func addItem(friendItem: FriendModel) {
@@ -30,4 +29,8 @@ class Friends {
     func clearAll() {
         friends.removeAll()
     }
+
 }
+
+
+

@@ -13,7 +13,8 @@ class Session {
     private init(){}
 
     var token: String = ""
-    var userId: Int = 0
+    var userId: String = ""
+    var expiresIn: String = ""
     var userLogin: String = ""
     var userFullName: String = ""
     var userEmail: String = ""

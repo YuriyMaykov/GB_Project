@@ -23,12 +23,6 @@ class LoginViewController: UIViewController {
             showEnterError()
             return
         }
-        
-        let session = Session.shared
-        session.token = "123456789"
-        session.userId = 123
-        session.userLogin = loginTextField.text ?? ""
-        
         performSegue(withIdentifier: "fromLoginController", sender: self)
     }
     
