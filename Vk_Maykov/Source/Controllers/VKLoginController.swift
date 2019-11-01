@@ -81,11 +81,12 @@ extension VKLoginController: WKNavigationDelegate {
             //performSegue(withIdentifier: "fromVKLoginController", sender: self)
             
             // ... а пока
-            let getVkAPI = GetVKAPI()
-            getVkAPI.friendsGet()
-            getVkAPI.photosGetAll("416682494")
-            getVkAPI.groupsGet()
-            getVkAPI.groupsSearch(q: "Xamarin", sort: 5, offset: 0, count: 5)
+            let mng = DataManager()
+            mng.friendsConvertData()
+            
+            //getVkAPI.photosGetAll("416682494")
+            //getVkAPI.groupsGet()
+            //getVkAPI.groupsSearch(q: "Xamarin", sort: 5, offset: 0, count: 5)
             
         }
  

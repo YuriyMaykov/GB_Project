@@ -11,21 +11,49 @@ import Alamofire
 
 class GetVKAPI {
     //https://api.vk.com/method/METHOD_NAME?PARAMETERS&access_token=TOKEN&v=V
-    
+
     let token = Session.shared.token
     let user_id = Session.shared.userId
     let url = "https://api.vk.com/method/"
 
-    func friendsGet() {
-        let methodName = "friends.get"
+    //MARK: - friends.get
+    func getFriends(completionHandler: @escaping(ParsModels.friendsList) -> ()) {
+        //var rqPrm = friendsGet()
         let params = [
             "user_id": user_id,
             "order": "hints",
-            "fields": "nickname, domain, sex, bdate, city, country, photo_50"
+            "fields": "nickname, photo_50, photo_100",
+            "access_token": token,
+            "v": "5.102"
         ]
-        getRequestData(url + methodName, .post, params, methodName)
+        let fUrl = url + "friends.get"
+        
+        Alamofire.request(fUrl, method: .post, parameters: params).responseData { (data) in
+            let parsModel = ParsModels.friendsList.self
+            do {
+                let result = try JSONDecoder().decode(parsModel, from: data.data!)
+                completionHandler(result)
+            } catch {
+                //в обработчик ошибок
+                print("Ошибка при парсинге объекта JSON")
+            }
+        }
+
     }
 
+    /*
+    //struct requestComponents { var url: String; var params: Parameters; }
+    func friendsGet() -> requestComponents {
+        return requestComponents(
+            url: url + "friends.get",
+            params: ["user_id": user_id,
+                     "order": "hints",
+                     "fields": "nickname, photo_50, photo_100"
+                    ]
+        )
+    }
+    */
+    
     func photosGetAll(_ ownerId: String = "") {
         let methodName = "photos.getAll"
         let params = [
@@ -33,7 +61,6 @@ class GetVKAPI {
             "extended": "1",
             "photo_sizes": "1"
         ]
-        getRequestData(url + methodName, .post, params, methodName)
     }
     
     func groupsGet(_ userId: String = "") {
@@ -44,7 +71,6 @@ class GetVKAPI {
             "extended": "1"
         ]
  
-        getRequestData(url + methodName, .post, params, methodName)
     }
     
     func groupsSearch(q: String, type: String = "", sort: Int = 0, offset: Int = 0, count: Int = 20) {
@@ -60,19 +86,7 @@ class GetVKAPI {
             params["type"] = type
         }
     
-        getRequestData(url + methodName, .post, params, methodName)
     }
-
+   
     
-    func getRequestData(_ url: String,_ method: HTTPMethod,_ params: Parameters,_ methodName: String = "") {
-        var params = params as Parameters
-        params["access_token"] = token
-        params["v"] = "5.102"
-
-        Alamofire.request(url, method: method, parameters: params).responseJSON { response in
-            print("!!!!!!! " + methodName)
-            print(response.value ?? "Запрос не вернул данные!")
-        }
-
-    }
 }
