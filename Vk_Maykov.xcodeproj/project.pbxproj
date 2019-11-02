@@ -36,6 +36,7 @@
 		98E95E7723466B1800E2ABAA /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E95E7623466B1800E2ABAA /* FriendCell.swift */; };
 		98F083252344F5C800C9A9D9 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F083242344F5C800C9A9D9 /* FriendsController.swift */; };
 		98F083272345131900C9A9D9 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F083262345131900C9A9D9 /* FriendsCell.swift */; };
+		F529F737236E043500FF6365 /* FriendsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F529F736236E043500FF6365 /* FriendsList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		98F083262345131900C9A9D9 /* FriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		DF59E8816C68E5D00451D5D5 /* Pods_Vk_Maykov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vk_Maykov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED52EFCA028C246215FEE54F /* Pods-Vk_Maykov.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vk_Maykov.debug.xcconfig"; path = "Target Support Files/Pods-Vk_Maykov/Pods-Vk_Maykov.debug.xcconfig"; sourceTree = "<group>"; };
+		F529F736236E043500FF6365 /* FriendsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsList.swift; sourceTree = "<group>"; };
 		FAA90B2791368B0D2A65BCAB /* Pods-Vk_Maykov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vk_Maykov.release.xcconfig"; path = "Target Support Files/Pods-Vk_Maykov/Pods-Vk_Maykov.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 			children = (
 				981BFE7E2364C44B00E84DD9 /* AppData.swift */,
 				9852F83023609DBD001A0725 /* Session.swift */,
+				F529F736236E043500FF6365 /* FriendsList.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				98E95E732345E71200E2ABAA /* GroupModel.swift in Sources */,
 				98AB1FEC234F28D00009D1BA /* LikeButton.swift in Sources */,
 				986626D8234E63A700D33EC2 /* ExtUIColor.swift in Sources */,
+				F529F737236E043500FF6365 /* FriendsList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
