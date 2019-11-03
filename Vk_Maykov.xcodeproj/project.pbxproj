@@ -12,7 +12,6 @@
 		981BFE7F2364C44B00E84DD9 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981BFE7E2364C44B00E84DD9 /* AppData.swift */; };
 		982F12A8236B33D3000D8E69 /* ParsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982F12A7236B33D3000D8E69 /* ParsModels.swift */; };
 		9852F83123609DBD001A0725 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852F83023609DBD001A0725 /* Session.swift */; };
-		9852F8332360A90F001A0725 /* FriendsDataBuild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852F8322360A90E001A0725 /* FriendsDataBuild.swift */; };
 		985498CF232EAA1D003AC61F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985498CE232EAA1D003AC61F /* AppDelegate.swift */; };
 		985498D1232EAA1D003AC61F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985498D0232EAA1D003AC61F /* LoginViewController.swift */; };
 		985498D4232EAA1D003AC61F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 985498D2232EAA1D003AC61F /* Main.storyboard */; };
@@ -24,7 +23,6 @@
 		986626D8234E63A700D33EC2 /* ExtUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986626D7234E63A700D33EC2 /* ExtUIColor.swift */; };
 		986626DA234E63FD00D33EC2 /* ExtUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986626D9234E63FD00D33EC2 /* ExtUIImage.swift */; };
 		98AB1FEC234F28D00009D1BA /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AB1FEB234F28D00009D1BA /* LikeButton.swift */; };
-		98BA3D78236BE9E700E8314C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BA3D77236BE9E700E8314C /* DataManager.swift */; };
 		98E371DF2350FEDE00EFC312 /* FriendPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E371DE2350FEDE00EFC312 /* FriendPageModel.swift */; };
 		98E6F03B2349F3840015AF7A /* MyGroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E6F03A2349F3840015AF7A /* MyGroupsCell.swift */; };
 		98E6F03D2349F3B10015AF7A /* AllGroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E6F03C2349F3B10015AF7A /* AllGroupsCell.swift */; };
@@ -44,7 +42,6 @@
 		981BFE7E2364C44B00E84DD9 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		982F12A7236B33D3000D8E69 /* ParsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsModels.swift; sourceTree = "<group>"; };
 		9852F83023609DBD001A0725 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		9852F8322360A90E001A0725 /* FriendsDataBuild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FriendsDataBuild.swift; path = ../Models/FriendsDataBuild.swift; sourceTree = "<group>"; };
 		985498CB232EAA1D003AC61F /* Vk_Maykov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vk_Maykov.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		985498CE232EAA1D003AC61F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		985498D0232EAA1D003AC61F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -58,7 +55,6 @@
 		986626D7234E63A700D33EC2 /* ExtUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIColor.swift; sourceTree = "<group>"; };
 		986626D9234E63FD00D33EC2 /* ExtUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIImage.swift; sourceTree = "<group>"; };
 		98AB1FEB234F28D00009D1BA /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
-		98BA3D77236BE9E700E8314C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		98E371DE2350FEDE00EFC312 /* FriendPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPageModel.swift; sourceTree = "<group>"; };
 		98E6F03A2349F3840015AF7A /* MyGroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsCell.swift; sourceTree = "<group>"; };
 		98E6F03C2349F3B10015AF7A /* AllGroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsCell.swift; sourceTree = "<group>"; };
@@ -194,9 +190,7 @@
 		986A71DB235446B50094BC41 /* BLL */ = {
 			isa = PBXGroup;
 			children = (
-				9852F8322360A90E001A0725 /* FriendsDataBuild.swift */,
 				9864E49D236611F70006C121 /* GetVkAPI.swift */,
-				98BA3D77236BE9E700E8314C /* DataManager.swift */,
 			);
 			path = BLL;
 			sourceTree = "<group>";
@@ -357,7 +351,6 @@
 			files = (
 				9852F83123609DBD001A0725 /* Session.swift in Sources */,
 				981BFE7F2364C44B00E84DD9 /* AppData.swift in Sources */,
-				9852F8332360A90F001A0725 /* FriendsDataBuild.swift in Sources */,
 				98E95E7523466A3400E2ABAA /* FriendController.swift in Sources */,
 				985498D1232EAA1D003AC61F /* LoginViewController.swift in Sources */,
 				98F083252344F5C800C9A9D9 /* FriendsController.swift in Sources */,
@@ -376,7 +369,6 @@
 				98F083272345131900C9A9D9 /* FriendsCell.swift in Sources */,
 				986626DA234E63FD00D33EC2 /* ExtUIImage.swift in Sources */,
 				98118E57236333C20017ECD4 /* VKLoginController.swift in Sources */,
-				98BA3D78236BE9E700E8314C /* DataManager.swift in Sources */,
 				98E95E732345E71200E2ABAA /* GroupModel.swift in Sources */,
 				98AB1FEC234F28D00009D1BA /* LikeButton.swift in Sources */,
 				986626D8234E63A700D33EC2 /* ExtUIColor.swift in Sources */,

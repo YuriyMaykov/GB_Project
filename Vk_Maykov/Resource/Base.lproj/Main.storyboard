@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GVh-Hg-xKn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GVh-Hg-xKn">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -212,9 +212,14 @@
                                                 <constraint firstAttribute="height" constant="50" id="d9d-EZ-nzU"/>
                                             </constraints>
                                         </view>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ntm-Ly-UuI">
+                                            <rect key="frame" x="150" y="31" width="20" height="20"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="4L4-bW-XHl" secondAttribute="bottom" constant="8" id="0hY-1W-6l1"/>
+                                        <constraint firstItem="ntm-Ly-UuI" firstAttribute="centerY" secondItem="ctg-Rc-azR" secondAttribute="centerY" id="3bu-Wj-oq0"/>
+                                        <constraint firstItem="ntm-Ly-UuI" firstAttribute="centerX" secondItem="ctg-Rc-azR" secondAttribute="centerX" id="4PE-iX-YLx"/>
                                         <constraint firstItem="RIh-TP-N9T" firstAttribute="leading" secondItem="ctg-Rc-azR" secondAttribute="leadingMargin" constant="8" id="4en-Ye-qkK"/>
                                         <constraint firstItem="4L4-bW-XHl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RIh-TP-N9T" secondAttribute="trailing" constant="16" id="5h4-is-0a3"/>
                                         <constraint firstItem="4L4-bW-XHl" firstAttribute="top" secondItem="ctg-Rc-azR" secondAttribute="top" constant="8" id="7uI-nj-5mV"/>
@@ -225,6 +230,7 @@
                                 <connections>
                                     <outlet property="avatarView" destination="4L4-bW-XHl" id="46F-RY-CEI"/>
                                     <outlet property="friendNameLabel" destination="RIh-TP-N9T" id="LeE-Z6-58k"/>
+                                    <outlet property="preloader" destination="ntm-Ly-UuI" id="RHy-Pj-O87"/>
                                     <segue destination="gd6-h9-gpz" kind="show" identifier="toFriend" id="Yin-qP-K8w"/>
                                 </connections>
                             </tableViewCell>
@@ -444,7 +450,7 @@
         <scene sceneID="NxR-3u-gUc">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qq2-9M-2FX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Друзья" id="WDA-Cv-eLY"/>
+                    <tabBarItem key="tabBarItem" title="Друзья" image="person" catalog="system" largeContentSizeImage="z" selectedImage="person.fill" id="WDA-Cv-eLY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1LB-qx-c6a">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
@@ -497,6 +503,11 @@
             <point key="canvasLocation" x="-3774.375" y="-643.30985915492954"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="person" catalog="system" width="64" height="58"/>
+        <image name="person.fill" catalog="system" width="64" height="60"/>
+        <image name="z" width="16" height="16"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="HBC-Og-NKw"/>
     </inferredMetricsTieBreakers>

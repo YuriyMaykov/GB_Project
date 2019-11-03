@@ -78,11 +78,10 @@ extension VKLoginController: WKNavigationDelegate {
         
         if (session.token != "" && session.userId != "" && session.expiresIn != "") {
             //идем дальше и там будем получать данные
-            //performSegue(withIdentifier: "fromVKLoginController", sender: self)
+            performSegue(withIdentifier: "fromVKLoginController", sender: self)
             
             // ... а пока
-            let mng = DataManager()
-            mng.friendsConvertData()
+            //FriendsList.shared.friendsConvertData()
             
             //getVkAPI.photosGetAll("416682494")
             //getVkAPI.groupsGet()

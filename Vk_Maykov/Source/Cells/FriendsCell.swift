@@ -11,7 +11,8 @@ import UIKit
 class FriendsCell: UITableViewCell {
     @IBOutlet weak var friendNameLabel: UILabel!
     @IBOutlet weak var avatarView: AvatarView!
-
+    @IBOutlet weak var preloader: UIActivityIndicatorView!
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         

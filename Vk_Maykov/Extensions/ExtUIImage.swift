@@ -12,4 +12,15 @@ extension UIImage {
     static var empty: UIImage {
         return UIGraphicsImageRenderer(size: CGSize.zero).image { _ in }
     }
+    
+    static func fromUrl(url: URL) -> UIImage {
+        let img: UIImage
+        do {
+            let  data = try Data(contentsOf: url)
+            img = UIImage(data: data) ?? UIImage.empty
+        } catch {
+            img = UIImage.empty
+        }
+        return img
+    }
 }

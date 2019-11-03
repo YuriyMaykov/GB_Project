@@ -10,33 +10,60 @@ import UIKit
 
 class FriendsController: UITableViewController {
     
+    let getAPI = GetVKAPI()
+    var friendsList = FriendsList.shared.items
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        friendsList.append(FriendModel(userId: -1, userName: "", userAvatar: UIImage.empty, userEmail: ""))
+        
+        //MARK: - запрос на сервер и обработка данных
+        getAPI.getFriends { qResult in
+            guard let apiData:[ParsModels.items] = qResult.response.items else {
+                print("Ошибка. Нет массива с данными!")
+                return
+            }
+            self.friendsList.removeAll()
+            print("=====пришел ответ от севера=====")
+            print(apiData.count)
+            
+            if apiData.count > 0 {
+                for i in apiData {
+                    self.friendsList.append(FriendModel(
+                        userId: i.id,
+                        userName: (i.lastName ?? "") + " " + (i.firstName ?? ""),
+                        userAvatar: UIImage.fromUrl(url: URL(string: i.photo50!)!),
+                        userEmail: ""
+                        )
+                    )
+                }
+            }
+            self.tableView.reloadData()
+        }
+        print("=====послали запрос на сервер, ждем данных ...=====")
+
     }
     
-    var friends: [FriendModel] = [
-        FriendModel(userId: 1, userName: "Щеголев Петр Сергеевич", userAvatar: UIImage(named: "user1")!, userEmail: "user1@uasersmail.ru"),
-        FriendModel(userId: 2, userName: "Петренко Николай", userAvatar: UIImage(named: "user2")!, userEmail: "user2@uasersmail.ru"),
-        FriendModel(userId: 3, userName: "Василий Журавликов", userAvatar: UIImage(named: "user3")!, userEmail: "user3@uasersmail.ru"),
-        FriendModel(userId: 11, userName: "Какой то надоедливый дядька, заспамил своими дурацкими предложениями !", userAvatar: UIImage(named: "Noimage")!, userEmail: "user11@uasersmail.ru"),
-        FriendModel(userId: 4, userName: "User4", userAvatar: UIImage(named: "user4")!, userEmail: "user4@uasersmail.ru"),
-        FriendModel(userId: 5, userName: "User5", userAvatar: UIImage(named: "user5")!, userEmail: "user5@uasersmail.ru"),
-        FriendModel(userId: 6, userName: "User6", userAvatar: UIImage(named: "user6")!, userEmail: "user6@uasersmail.ru"),
-        FriendModel(userId: 7, userName: "User7", userAvatar: UIImage(named: "user7")!, userEmail: "user7@uasersmail.ru"),
-        FriendModel(userId: 8, userName: "User8", userAvatar: UIImage(named: "user8")!, userEmail: "user8@uasersmail.ru"),
-        FriendModel(userId: 9, userName: "User9", userAvatar: UIImage(named: "user9")!, userEmail: "user9@uasersmail.ru"),
-        FriendModel(userId: 10, userName: "User10", userAvatar: UIImage(named: "user10")!, userEmail: "user10@uasersmail.ru")
-    ]
-
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friends.count
+        print("=====tableView return items count=====")
+        return friendsList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("=====Generate cell data=====")
         let cell = tableView.dequeueReusableCell(withIdentifier: "friendsCell", for: indexPath) as! FriendsCell
-        cell.friendNameLabel.text = friends[indexPath.row].userName
-        cell.avatarView.image = friends[indexPath.row].userAvatar ?? UIImage.empty
+        cell.friendNameLabel.text = friendsList[indexPath.row].userName
+        cell.avatarView.image = friendsList[indexPath.row].userAvatar ?? UIImage.empty
+        if friendsList[indexPath.row].userId == -1 {
+            cell.preloader.isHidden = false
+            cell.avatarView.isHidden = true
+        } else {
+            cell.preloader.isHidden = true
+            cell.avatarView.isHidden = false
+        }
+        
         return cell
     }
 
@@ -54,13 +81,15 @@ class FriendsController: UITableViewController {
                 guard let selRow = tableView.indexPathForSelectedRow?.row else {return}
                 friendVC.friend.insert(FriendPageModel(
                     itemId: 0,
-                    userId: friends[selRow].userId,
-                    itemImage: friends[selRow].userAvatar ?? UIImage.empty,
+                    userId: friendsList[selRow].userId,
+                    itemImage: friendsList[selRow].userAvatar ?? UIImage.empty,
                     likesCount: 0,
-                    notis: friends[selRow].userName),
+                    notis: friendsList[selRow].userName),
                 at: 0)
             }
         }
     }
+    
+
 
 }

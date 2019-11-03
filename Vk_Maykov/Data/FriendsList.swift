@@ -14,27 +14,4 @@ class FriendsList {
     
     var items: [FriendModel] = []
     
-    func addItem(item: FriendModel) {
-        items.append(item)
-    }
-    
-    func removeItem(indx: Int) {
-        guard indx >= 0 && indx < items.count else {
-            return
-        }
-        
-        items.remove(at: indx)
-    }
-    
-    func clearItems() {
-        items.removeAll()
-    }
-    
-    func addItems(itemsArray: [FriendModel]) {
-        itemsArray.forEach { item in
-            items.append(item)
-        }
-    }
-    
-    
 }
