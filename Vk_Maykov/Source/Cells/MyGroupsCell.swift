@@ -11,7 +11,8 @@ import UIKit
 class MyGroupsCell: UITableViewCell {
     @IBOutlet weak var myGroupNameLabel: UILabel!
     @IBOutlet weak var myGroupImage: AvatarView!
-
+    @IBOutlet weak var preloader: UIActivityIndicatorView!
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         myGroupNameLabel.text = ""

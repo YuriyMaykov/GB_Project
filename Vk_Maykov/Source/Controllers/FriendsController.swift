@@ -19,7 +19,7 @@ class FriendsController: UITableViewController {
         
         //MARK: - запрос на сервер и обработка данных
         getAPI.getFriends { qResult in
-            guard let apiData:[ParsModels.items] = qResult.response.items else {
+            guard let apiData: [FriendsGetModel.friendsItems] = qResult.response.items else {
                 print("Ошибка. Нет массива с данными!")
                 return
             }
@@ -47,7 +47,6 @@ class FriendsController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("=====tableView return items count=====")
         return friendsList.count
     }
 

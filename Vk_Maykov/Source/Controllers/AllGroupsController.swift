@@ -10,7 +10,7 @@ import UIKit
 
 class AllGroupsController: UITableViewController {
 
-    var groups: [GroupModel] = [
+    var allGroups: [GroupModel] = [
         GroupModel(groupId: 1, groupName: "Друзья", groupImage: UIImage(named: "group1")!, groupDesc: "Мои друзья"),
         GroupModel(groupId: 2, groupName: "Семья", groupImage: UIImage(named: "family")!, groupDesc: "Мои близкие и остальные родственники"),
         GroupModel(groupId: 3, groupName: "Коллеги", groupImage: UIImage(named: "colleagues")!, groupDesc: "Коллеги по работе"),
@@ -33,13 +33,13 @@ class AllGroupsController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return groups.count
+        return allGroups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "allGroupCell", for: indexPath) as! AllGroupsCell
-        cell.allGroupsNameLabel.text = groups[indexPath.row].groupName
-        cell.allGroupsImage.image = groups[indexPath.row].groupImage
+        cell.allGroupsNameLabel.text = allGroups[indexPath.row].groupName
+        cell.allGroupsImage.image = allGroups[indexPath.row].groupImage ?? UIImage.empty
         return cell
     }
 
@@ -51,7 +51,7 @@ class AllGroupsController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            groups.remove(at: indexPath.row)
+            allGroups.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

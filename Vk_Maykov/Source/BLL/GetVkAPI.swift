@@ -17,8 +17,7 @@ class GetVKAPI {
     let url = "https://api.vk.com/method/"
 
     //MARK: - friends.get
-    func getFriends(completionHandler: @escaping(ParsModels.friendsList) -> ()) {
-        //var rqPrm = friendsGet()
+    func getFriends(completionHandler: @escaping(FriendsGetModel.friendsList) -> ()) {
         let params = [
             "user_id": user_id,
             "order": "hints",
@@ -29,30 +28,41 @@ class GetVKAPI {
         let fUrl = url + "friends.get"
         
         Alamofire.request(fUrl, method: .post, parameters: params).responseData { (data) in
-            let parsModel = ParsModels.friendsList.self
+            let parsModel = FriendsGetModel.friendsList.self
             do {
                 let result = try JSONDecoder().decode(parsModel, from: data.data!)
                 completionHandler(result)
             } catch {
                 //в обработчик ошибок
-                print("Ошибка при парсинге объекта JSON")
+                print("Ошибка при парсинге объекта JSON friends.get")
             }
         }
 
     }
-
-    /*
-    //struct requestComponents { var url: String; var params: Parameters; }
-    func friendsGet() -> requestComponents {
-        return requestComponents(
-            url: url + "friends.get",
-            params: ["user_id": user_id,
-                     "order": "hints",
-                     "fields": "nickname, photo_50, photo_100"
-                    ]
-        )
+    
+    //MARK: - groups.get
+    func groupsGet(_ userId: String = "", completionHandler: @escaping(GroupsGetModel.groupsList) -> ()) {
+        let fUrl = url + "groups.get"
+        let params = [
+            "user_id": (userId == "" ? user_id : userId),
+            "extended": "1",
+            "access_token": token,
+            "v": "5.102"
+        ]
+        
+        Alamofire.request(fUrl, method: .post, parameters: params).responseData { (data) in
+            let parsModel = GroupsGetModel.groupsList.self
+            do {
+                let result = try JSONDecoder().decode(parsModel, from: data.data!)
+                completionHandler(result)
+            } catch {
+                //в обработчик ошибок
+                print("Ошибка при парсинге объекта JSON groups.get")
+            }
+        }
     }
-    */
+
+    
     
     func photosGetAll(_ ownerId: String = "") {
         let methodName = "photos.getAll"
@@ -63,15 +73,6 @@ class GetVKAPI {
         ]
     }
     
-    func groupsGet(_ userId: String = "") {
-        let methodName = "groups.get"
-
-        let params = [
-            "user_id": (userId == "" ? user_id : userId),
-            "extended": "1"
-        ]
- 
-    }
     
     func groupsSearch(q: String, type: String = "", sort: Int = 0, offset: Int = 0, count: Int = 20) {
         let methodName = "groups.search"

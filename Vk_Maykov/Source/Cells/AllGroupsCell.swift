@@ -11,6 +11,7 @@ import UIKit
 class AllGroupsCell: UITableViewCell {
     @IBOutlet weak var allGroupsNameLabel: UILabel!
     @IBOutlet weak var allGroupsImage: AvatarView!
+    @IBOutlet weak var preloader: UIActivityIndicatorView!
     
     override func prepareForReuse() {
         super.prepareForReuse()

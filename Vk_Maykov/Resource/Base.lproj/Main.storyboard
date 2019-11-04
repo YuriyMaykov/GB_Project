@@ -276,8 +276,13 @@
                                                 <constraint firstAttribute="width" secondItem="wOA-6R-1ff" secondAttribute="height" multiplier="1:1" id="lHJ-p3-Roo"/>
                                             </constraints>
                                         </view>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="XQf-CI-UO3">
+                                            <rect key="frame" x="150" y="20" width="20" height="20"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="XQf-CI-UO3" firstAttribute="centerX" secondItem="0lz-6p-DBW" secondAttribute="centerX" id="24a-qQ-qza"/>
+                                        <constraint firstItem="XQf-CI-UO3" firstAttribute="centerY" secondItem="0lz-6p-DBW" secondAttribute="centerY" id="2ld-06-PeJ"/>
                                         <constraint firstItem="B4k-UB-wja" firstAttribute="leading" secondItem="0lz-6p-DBW" secondAttribute="leadingMargin" constant="8" id="5f1-mu-2mn"/>
                                         <constraint firstAttribute="trailing" secondItem="wOA-6R-1ff" secondAttribute="trailing" constant="16" id="9Pu-dF-SH5"/>
                                         <constraint firstItem="B4k-UB-wja" firstAttribute="centerY" secondItem="0lz-6p-DBW" secondAttribute="centerY" id="Nqn-GD-JS4"/>
@@ -289,6 +294,7 @@
                                 <connections>
                                     <outlet property="myGroupImage" destination="wOA-6R-1ff" id="gDi-zn-KGi"/>
                                     <outlet property="myGroupNameLabel" destination="B4k-UB-wja" id="MPb-SY-Ndy"/>
+                                    <outlet property="preloader" destination="XQf-CI-UO3" id="4MS-Bz-f43"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -340,11 +346,17 @@
                                                 <constraint firstAttribute="width" secondItem="w70-WF-Z1t" secondAttribute="height" multiplier="1:1" id="Wd0-a6-9fu"/>
                                             </constraints>
                                         </view>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="eb2-3c-syr">
+                                            <rect key="frame" x="150" y="20" width="20" height="20"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="w70-WF-Z1t" secondAttribute="trailing" constant="16" id="4DK-Mr-DF1"/>
+                                        <constraint firstItem="eb2-3c-syr" firstAttribute="centerY" secondItem="A39-md-xMW" secondAttribute="centerY" id="HvN-tK-6Fb"/>
                                         <constraint firstItem="MWm-6v-3V8" firstAttribute="leading" secondItem="A39-md-xMW" secondAttribute="leadingMargin" constant="8" id="O0Q-7l-JuX"/>
+                                        <constraint firstItem="eb2-3c-syr" firstAttribute="centerX" secondItem="A39-md-xMW" secondAttribute="centerX" id="R2S-EC-VJJ"/>
                                         <constraint firstItem="MWm-6v-3V8" firstAttribute="centerY" secondItem="A39-md-xMW" secondAttribute="centerY" id="mtb-QA-O7g"/>
+                                        <constraint firstAttribute="trailing" secondItem="eb2-3c-syr" secondAttribute="trailing" constant="150" id="stT-Dx-ycY"/>
                                         <constraint firstAttribute="bottom" secondItem="w70-WF-Z1t" secondAttribute="bottom" constant="8" id="tIR-XN-S6l"/>
                                         <constraint firstItem="w70-WF-Z1t" firstAttribute="top" secondItem="A39-md-xMW" secondAttribute="top" constant="8" id="ulh-8H-Kuj"/>
                                         <constraint firstItem="w70-WF-Z1t" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MWm-6v-3V8" secondAttribute="trailing" constant="16" id="x9T-cd-Puz"/>
@@ -353,6 +365,7 @@
                                 <connections>
                                     <outlet property="allGroupsImage" destination="w70-WF-Z1t" id="hon-Wy-uQc"/>
                                     <outlet property="allGroupsNameLabel" destination="MWm-6v-3V8" id="NNJ-5x-PbS"/>
+                                    <outlet property="preloader" destination="eb2-3c-syr" id="asS-nH-hC9"/>
                                     <segue destination="PMq-5Y-lZ0" kind="unwind" identifier="addGroup" unwindAction="returnToMyGroupsWithUnwindSegue:" id="FKd-f3-brM"/>
                                 </connections>
                             </tableViewCell>
@@ -469,7 +482,7 @@
         <scene sceneID="gAr-BH-vmu">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="24x-UN-CCk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Группы" id="r8I-ZK-pQz"/>
+                    <tabBarItem key="tabBarItem" title="Группы" image="person.3" catalog="system" selectedImage="person.3.fill" id="r8I-ZK-pQz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4SE-Gm-Qjp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
@@ -505,10 +518,12 @@
     </scenes>
     <resources>
         <image name="person" catalog="system" width="64" height="58"/>
+        <image name="person.3" catalog="system" width="72" height="35"/>
+        <image name="person.3.fill" catalog="system" width="71" height="34"/>
         <image name="person.fill" catalog="system" width="64" height="60"/>
         <image name="z" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HBC-Og-NKw"/>
+        <segue reference="fK0-p1-voe"/>
     </inferredMetricsTieBreakers>
 </document>

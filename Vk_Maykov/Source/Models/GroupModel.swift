@@ -11,7 +11,7 @@ import UIKit
 class GroupModel{
     var groupId: Int
     var groupName: String
-    var groupImage: UIImage
+    var groupImage: UIImage?
     var groupDesc: String
     
     init(groupId: Int, groupName: String, groupImage: UIImage, groupDesc: String) {

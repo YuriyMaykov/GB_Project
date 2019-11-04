@@ -1,25 +1,23 @@
 //
-//  ParsModels.swift
+//  FriendsGetModel.swift
 //  Vk_Maykov
 //
-//  Created by Юрий on 31/10/2019.
+//  Created by ТПлюс on 04.11.2019.
 //  Copyright © 2019 Yuriy. All rights reserved.
 //
 
 import UIKit
-
-class ParsModels {
-    //MARK: friends.get
+class FriendsGetModel {
     struct friendsList: Decodable {
-        let response: response
+        let response: responseHead
     }
     
-    struct response: Decodable {
+    struct responseHead: Decodable {
         let count: Int
-        let items: [items]
+        let items: [friendsItems]
     }
     
-    struct items: Decodable {
+    struct friendsItems: Decodable {
         let id: Int
         var firstName: String?
         var lastName: String?
@@ -38,7 +36,5 @@ class ParsModels {
             case photo100 = "photo_100"
         }
     }
-    
-    //MARK:
-
 }
+
