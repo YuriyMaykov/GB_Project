@@ -12,36 +12,11 @@ class FriendsController: UITableViewController {
     
     let getAPI = GetVKAPI()
     var friendsList = FriendsList.shared.items
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         friendsList.append(FriendModel(userId: -1, userName: "", userAvatar: UIImage.empty, userEmail: ""))
-        
-        //MARK: - запрос на сервер и обработка данных
-        getAPI.getFriends { qResult in
-            guard let apiData: [FriendsGetModel.friendsItems] = qResult.response.items else {
-                print("Ошибка. Нет массива с данными!")
-                return
-            }
-            self.friendsList.removeAll()
-            print("=====пришел ответ от севера=====")
-            print(apiData.count)
-            
-            if apiData.count > 0 {
-                for i in apiData {
-                    self.friendsList.append(FriendModel(
-                        userId: i.id,
-                        userName: (i.lastName ?? "") + " " + (i.firstName ?? ""),
-                        userAvatar: UIImage.fromUrl(url: URL(string: i.photo50!)!),
-                        userEmail: ""
-                        )
-                    )
-                }
-            }
-            self.tableView.reloadData()
-        }
-        print("=====послали запрос на сервер, ждем данных ...=====")
-
+        getDataFromRequest()
     }
     
     
@@ -77,18 +52,38 @@ class FriendsController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let friendVC = segue.destination as? FriendController {
             if (segue.identifier == "toFriend") {
-                guard let selRow = tableView.indexPathForSelectedRow?.row else {return}
-                friendVC.friend.insert(FriendPageModel(
-                    itemId: 0,
-                    userId: friendsList[selRow].userId,
-                    itemImage: friendsList[selRow].userAvatar ?? UIImage.empty,
-                    likesCount: 0,
-                    notis: friendsList[selRow].userName),
-                at: 0)
+                guard let selRow = tableView.indexPathForSelectedRow?.row else { return }
+                
+                friendVC.ownerId = String(friendsList[selRow].userId)
             }
         }
     }
     
+    //MARK: - запрос на сервер и обработка данных
+    func getDataFromRequest() {
+         getAPI.getFriends { qResult in
+             guard let apiData: [FriendsGetModel.friendsItems] = qResult.response.items else {
+                 print("Ошибка. Нет массива с данными!")
+                 return
+             }
+             self.friendsList.removeAll()
+             print("=====пришел ответ от севера=====")
+             print(apiData.count)
+             
+             if apiData.count > 0 {
+                 for i in apiData {
+                     self.friendsList.append(FriendModel(
+                         userId: i.id,
+                         userName: (i.lastName ?? "") + " " + (i.firstName ?? ""),
+                         userAvatar: UIImage.fromUrl(url: URL(string: i.photo50!)!),
+                         userEmail: ""
+                         )
+                     )
+                 }
+             }
+             self.tableView.reloadData()
+         }
+    }
 
 
 }

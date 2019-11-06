@@ -16,30 +16,8 @@ class MyGroupsController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         groupsList.append(GroupModel(groupId: -1, groupName: "", groupImage: UIImage.empty, groupDesc: ""))
-
-        //MARK: - запрос на сервер и обработка данных
-        getAPI.groupsGet(userIdForGroups) {qResult in
-            guard let apiData: [GroupsGetModel.groupsItems] = qResult.response.items else {
-                print("Ошибка! Запрос не вернул данные! ")
-                return
-            }
-            self.groupsList.removeAll()
-            
-            if apiData.count > 0 {
-                for i in apiData {
-                    self.groupsList.append(GroupModel(
-                        groupId: i.id,
-                        groupName: i.groupName ?? "***",
-                        groupImage: UIImage.fromUrl(url: URL(string: i.photo50 ?? "")!) ,
-                        groupDesc: ""
-                        )
-                    )
-                }
-            }
-            self.tableView.reloadData()
-        }
+        getDataFromRequest()
     }
 
     @IBAction func returnToMyGroups(unwindSegue: UIStoryboardSegue) {
@@ -87,4 +65,30 @@ class MyGroupsController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    
+    //MARK: - запрос на сервер и обработка данных
+    func getDataFromRequest() {
+        getAPI.groupsGet(userIdForGroups) {qResult in
+            guard let apiData: [GroupsGetModel.groupsItems] = qResult.response.items else {
+                print("Ошибка! Запрос не вернул данные! ")
+                return
+            }
+            self.groupsList.removeAll()
+            
+            if apiData.count > 0 {
+                for i in apiData {
+                    self.groupsList.append(GroupModel(
+                        groupId: i.id,
+                        groupName: i.groupName ?? "***",
+                        groupImage: UIImage.fromUrl(url: URL(string: i.photo50 ?? "")!) ,
+                        groupDesc: ""
+                        )
+                    )
+                }
+            }
+            self.tableView.reloadData()
+        }
+    }
+
+
 }

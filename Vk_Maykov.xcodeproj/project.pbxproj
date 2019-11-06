@@ -37,7 +37,8 @@
 		F529F73B2370277700FF6365 /* FriendsGetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F529F73A2370277700FF6365 /* FriendsGetModel.swift */; };
 		F529F73D23702DB400FF6365 /* GroupsGetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F529F73C23702DB400FF6365 /* GroupsGetModel.swift */; };
 		F529F73F23703F0F00FF6365 /* GroupsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F529F73E23703F0F00FF6365 /* GroupsList.swift */; };
-		F529F743237081AA00FF6365 /* PhotosGetAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = F529F742237081AA00FF6365 /* PhotosGetAll.swift */; };
+		F529F743237081AA00FF6365 /* PhotosGetAllModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F529F742237081AA00FF6365 /* PhotosGetAllModel.swift */; };
+		F529F74723709F7400FF6365 /* UserPhotosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F529F74623709F7400FF6365 /* UserPhotosList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,7 +75,8 @@
 		F529F73A2370277700FF6365 /* FriendsGetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsGetModel.swift; sourceTree = "<group>"; };
 		F529F73C23702DB400FF6365 /* GroupsGetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsGetModel.swift; sourceTree = "<group>"; };
 		F529F73E23703F0F00FF6365 /* GroupsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsList.swift; sourceTree = "<group>"; };
-		F529F742237081AA00FF6365 /* PhotosGetAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosGetAll.swift; sourceTree = "<group>"; };
+		F529F742237081AA00FF6365 /* PhotosGetAllModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosGetAllModel.swift; sourceTree = "<group>"; };
+		F529F74623709F7400FF6365 /* UserPhotosList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPhotosList.swift; sourceTree = "<group>"; };
 		FAA90B2791368B0D2A65BCAB /* Pods-Vk_Maykov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vk_Maykov.release.xcconfig"; path = "Target Support Files/Pods-Vk_Maykov/Pods-Vk_Maykov.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +151,7 @@
 				9852F83023609DBD001A0725 /* Session.swift */,
 				F529F736236E043500FF6365 /* FriendsList.swift */,
 				F529F73E23703F0F00FF6365 /* GroupsList.swift */,
+				F529F74623709F7400FF6365 /* UserPhotosList.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -218,7 +221,7 @@
 				98E371DE2350FEDE00EFC312 /* FriendPageModel.swift */,
 				F529F73A2370277700FF6365 /* FriendsGetModel.swift */,
 				F529F73C23702DB400FF6365 /* GroupsGetModel.swift */,
-				F529F742237081AA00FF6365 /* PhotosGetAll.swift */,
+				F529F742237081AA00FF6365 /* PhotosGetAllModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -364,7 +367,7 @@
 				98E95E7523466A3400E2ABAA /* FriendController.swift in Sources */,
 				985498D1232EAA1D003AC61F /* LoginViewController.swift in Sources */,
 				98F083252344F5C800C9A9D9 /* FriendsController.swift in Sources */,
-				F529F743237081AA00FF6365 /* PhotosGetAll.swift in Sources */,
+				F529F743237081AA00FF6365 /* PhotosGetAllModel.swift in Sources */,
 				98E6F03B2349F3840015AF7A /* MyGroupsCell.swift in Sources */,
 				98E371DF2350FEDE00EFC312 /* FriendPageModel.swift in Sources */,
 				98E95E7723466B1800E2ABAA /* FriendCell.swift in Sources */,
@@ -385,6 +388,7 @@
 				98AB1FEC234F28D00009D1BA /* LikeButton.swift in Sources */,
 				986626D8234E63A700D33EC2 /* ExtUIColor.swift in Sources */,
 				F529F737236E043500FF6365 /* FriendsList.swift in Sources */,
+				F529F74723709F7400FF6365 /* UserPhotosList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

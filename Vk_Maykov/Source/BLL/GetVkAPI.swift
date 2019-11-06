@@ -62,18 +62,35 @@ class GetVKAPI {
         }
     }
 
-    
-    
-    func photosGetAll(_ ownerId: String = "") {
-        let methodName = "photos.getAll"
-        let params = [
-            "owner_id": ownerId,
-            "extended": "1",
-            "photo_sizes": "1"
+    //MARK: - photos.getAll
+    func photosGetAll(ownerId: String = "", offset: Int = 0, count: Int = 20, completionHandler: @escaping(PhotosGetAllModel.userPhotosList) -> ()) {
+        let fUrl = url + "photos.getAll"
+        let params: Parameters = [
+            "owner_id": (ownerId == "" ? user_id : ownerId),
+            "extended": 1,
+            "offset": offset,
+            "count": count,
+            "photo_sizes": 1,
+            "access_token": token,
+            "v": "5.102"
         ]
+        
+        Alamofire.request(fUrl, method: .post, parameters: params).responseData { (data) in
+            let parsModel = PhotosGetAllModel.userPhotosList.self
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let result = try decoder.decode(parsModel, from: data.data!)
+                completionHandler(result)
+            } catch {
+                //в обработчик ошибок
+                print("Ошибка при парсинге объекта JSON photos.getAll")
+            }
+        }
+
     }
     
-    
+    /*
     func groupsSearch(q: String, type: String = "", sort: Int = 0, offset: Int = 0, count: Int = 20) {
         let methodName = "groups.search"
 
@@ -88,6 +105,6 @@ class GetVKAPI {
         }
     
     }
-   
+   */
     
 }

@@ -12,8 +12,12 @@ private let reuseIdentifier = "friendCell"
 
 class FriendController: UICollectionViewController {
 
-    var friend: [FriendPageModel] = []
+    let getAPI = GetVKAPI()
+    var usersPhotos = UserPhotosList.shared.items
+    var ownerId: String = ""
     
+    /*
+    var friend: [FriendPageModel] = []
     private func friendGetData() {
         if (friend.count > 0){
             let item: FriendPageModel = friend[0]
@@ -41,11 +45,14 @@ class FriendController: UICollectionViewController {
         )
 
     }
-
+    */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        friendGetData()
-        self.collectionView.reloadData()
+        //friendGetData()
+        //self.collectionView.reloadData()
+        
+        getDataFromRequest()
     }
 
     @IBAction func likeBtnClick(_ sender: LikeButton, forEvent event: UIEvent) {
@@ -54,29 +61,29 @@ class FriendController: UICollectionViewController {
         
         if (cell.likeButton.backgroundColor == UIColor.red){
             cell.likeButton.backgroundColor = UIColor.gray
-            friend[indx].likesCount -= 1
+            usersPhotos[indx].likesCount -= 1
             cell.likeCount.textColor = UIColor.gray
-            cell.likeCount.text = String(friend[indx].likesCount)
+            cell.likeCount.text = String(usersPhotos[indx].likesCount)
         } else {
             cell.likeButton.backgroundColor = UIColor.red
-            friend[indx].likesCount += 1
+            usersPhotos[indx].likesCount += 1
             cell.likeCount.textColor = UIColor.red
-            cell.likeCount.text = String(friend[indx].likesCount)
+            cell.likeCount.text = String(usersPhotos[indx].likesCount)
         }
     }
 
     // MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return friend.count
+        return usersPhotos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FriendCell
-        cell.friendAvatar.image = friend[indexPath.row].itemImage
+        cell.friendAvatar.image = usersPhotos[indexPath.row].itemImage
         cell.likeCount.textColor = UIColor.gray
         cell.likeButton.backgroundColor = UIColor.gray
-        cell.likeCount.text = String(friend[indexPath.row].likesCount)
+        cell.likeCount.text = String(usersPhotos[indexPath.row].likesCount)
 
         return cell
     }
@@ -109,5 +116,42 @@ class FriendController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     }
- */
+    */
+
+    //MARK: - запрос на сервер и обработка данных
+    var photosOffset: Int = 0
+    var photosCount: Int = 20
+    func getDataFromRequest() {
+        getAPI.photosGetAll(ownerId: ownerId, offset: photosOffset, count: photosCount) { qResult in
+            guard let apiData: [PhotosGetAllModel.photosItems] = qResult.response.items else {
+                 print("Ошибка. Нет массива с данными!")
+                 return
+             }
+             //self.usersPhotos.removeAll()
+             print("=====пришел ответ от севера=====")
+             print(apiData.count)
+             
+             if apiData.count > 0 {
+                 for i in apiData {
+                    var photo = i.sizes.filter { $0.type == "r" }
+                    if photo.count == 0 {
+                        photo = [i.sizes[0]]
+                    }
+                    
+                    self.usersPhotos.append(FriendPageModel(
+                        itemId: i.id,
+                        userId: i.ownerId ?? 0,
+                        itemImage: UIImage.fromUrl(url: URL(string: photo[0].url)!),
+                        likesCount: i.likes.likesCount,
+                        notis: i.text ?? ""
+                        )
+                     )
+                     
+                 }
+             }
+             self.collectionView.reloadData()
+         }
+    }
+
+
 }

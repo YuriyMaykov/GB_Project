@@ -1,5 +1,5 @@
 //
-//  PhotosGetAll.swift
+//  PhotosGetAllModel.swift
 //  Vk_Maykov
 //
 //  Created by ТПлюс on 04.11.2019.
@@ -8,11 +8,71 @@
 
 import UIKit
 
-class PhotosGetAll: Decodable {
+class PhotosGetAllModel: Decodable {
+    struct userPhotosList: Decodable {
+        let response: responseHead
+    }
+
+    struct responseHead: Decodable {
+        let count: Int
+        let items: [photosItems]
+    }
     
+    struct photosItems: Decodable {
+        let id: Int
+        let albumId: Int?
+        let ownerId: Int?
+        let sizes: [photoSizes]
+        let text: String?
+        //let date: Date?
+        //let postId: Int
+        let likes: photoLikes
+        let reposts: photoReposts
+        
+        enum CodingKeys: String, CodingKey {
+            case id
+            case albumId = "album_id"
+            case ownerId = "owner_id"
+            case sizes
+            case text
+            //case date
+            //case postId = "post_id"
+            case likes
+            case reposts
+        }
+    }
     
+    struct photoSizes: Decodable {
+        let type: String
+        let url: String
+        let width: Int
+        let height: Int
+    }
     
+    struct photoLikes: Decodable {
+        let userLikes: Int
+        let likesCount: Int
+        
+        enum CodingKeys: String, CodingKey {
+            case userLikes = "user_likes"
+            case likesCount = "count"
+        }
+    }
+    
+    struct photoReposts: Decodable {
+        let repostsCount: Int
+        
+        enum CodingKeys: String, CodingKey {
+            case repostsCount = "count"
+        }
+    }
     /*
+     
+     "likes": {
+         "user_likes": 0,
+         "count": 0
+     },
+
      {
          "response": {
              "count": 1,
