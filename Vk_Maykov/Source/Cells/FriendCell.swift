@@ -10,13 +10,14 @@ import UIKit
 
 class FriendCell: UICollectionViewCell {
     
-    @IBOutlet weak var friendAvatar: UIImageView!
+    @IBOutlet weak var friendPhoto: UIImageView!
     @IBOutlet weak var likeCount: UILabel!
     @IBOutlet weak var likeButton: LikeButton!
+    @IBOutlet weak var preloader: UIActivityIndicatorView!
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        friendAvatar.image = UIImage.empty
+        friendPhoto.image = UIImage.empty
         likeCount.text = "0"
     }
 }

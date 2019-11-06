@@ -15,42 +15,9 @@ class FriendController: UICollectionViewController {
     let getAPI = GetVKAPI()
     var usersPhotos = UserPhotosList.shared.items
     var ownerId: String = ""
-    
-    /*
-    var friend: [FriendPageModel] = []
-    private func friendGetData() {
-        if (friend.count > 0){
-            let item: FriendPageModel = friend[0]
-            friend.removeAll()
-            friend.append(item)
-        }
         
-        friend.append(
-            FriendPageModel(
-                itemId: 2,
-                userId: (friend.count > 0) ? friend[0].userId : 0,
-                itemImage: UIImage(named: "s800") ?? UIImage.empty,
-                likesCount: 256,
-                notis: "Прикольная собака!"
-            )
-        )
-        friend.append(
-            FriendPageModel(
-                itemId: 3,
-                userId: (friend.count > 0) ? friend[0].userId : 0,
-                itemImage: UIImage(named: "s800") ?? UIImage.empty,
-                likesCount: 25,
-                notis: "собака"
-            )
-        )
-
-    }
-    */
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //friendGetData()
-        //self.collectionView.reloadData()
         
         getDataFromRequest()
     }
@@ -80,11 +47,28 @@ class FriendController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FriendCell
-        cell.friendAvatar.image = usersPhotos[indexPath.row].itemImage
         cell.likeCount.textColor = UIColor.gray
         cell.likeButton.backgroundColor = UIColor.gray
         cell.likeCount.text = String(usersPhotos[indexPath.row].likesCount)
 
+        //cell.friendPhoto.image = usersPhotos[indexPath.row].itemImage
+        DispatchQueue.main.async {
+            var err = false
+            if let url = URL(string: self.usersPhotos[indexPath.row].urlSmalPhoto) {
+                if let data = try? Data(contentsOf: url){
+                    cell.friendPhoto.image = UIImage(data: data)
+                } else {
+                    err = true
+                }
+            } else {
+                err = true
+            }
+            if err {
+                cell.friendPhoto.image = UIImage(named: "noimgvk")
+            }
+            
+        }
+        cell.preloader.isHidden = true
         return cell
     }
 
@@ -120,7 +104,7 @@ class FriendController: UICollectionViewController {
 
     //MARK: - запрос на сервер и обработка данных
     var photosOffset: Int = 0
-    var photosCount: Int = 20
+    var photosCount: Int = 200
     func getDataFromRequest() {
         getAPI.photosGetAll(ownerId: ownerId, offset: photosOffset, count: photosCount) { qResult in
             guard let apiData: [PhotosGetAllModel.photosItems] = qResult.response.items else {
@@ -128,12 +112,9 @@ class FriendController: UICollectionViewController {
                  return
              }
              //self.usersPhotos.removeAll()
-             print("=====пришел ответ от севера=====")
-             print(apiData.count)
-             
              if apiData.count > 0 {
                  for i in apiData {
-                    var photo = i.sizes.filter { $0.type == "r" }
+                    var photo = i.sizes.filter { $0.type == "o" }
                     if photo.count == 0 {
                         photo = [i.sizes[0]]
                     }
@@ -141,9 +122,11 @@ class FriendController: UICollectionViewController {
                     self.usersPhotos.append(FriendPageModel(
                         itemId: i.id,
                         userId: i.ownerId ?? 0,
-                        itemImage: UIImage.fromUrl(url: URL(string: photo[0].url)!),
+                        itemImage: UIImage.empty, //UIImage.fromUrl(url: URL(string: photo[0].url)!),
                         likesCount: i.likes.likesCount,
-                        notis: i.text ?? ""
+                        notis: i.text ?? "",
+                        urlSmalPhoto: photo[0].url,
+                        urlBigPhoto: photo[0].url
                         )
                      )
                      

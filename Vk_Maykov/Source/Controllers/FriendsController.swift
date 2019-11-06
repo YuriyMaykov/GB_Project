@@ -67,9 +67,6 @@ class FriendsController: UITableViewController {
                  return
              }
              self.friendsList.removeAll()
-             print("=====пришел ответ от севера=====")
-             print(apiData.count)
-             
              if apiData.count > 0 {
                  for i in apiData {
                      self.friendsList.append(FriendModel(

@@ -403,6 +403,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="110" height="140"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="9eD-Bx-3NU">
+                                            <rect key="frame" x="36.5" y="51.5" width="37" height="37"/>
+                                        </activityIndicatorView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="30C-Q0-z00">
                                             <rect key="frame" x="5" y="5" width="100" height="100"/>
                                             <constraints>
@@ -431,8 +434,10 @@
                                 <constraints>
                                     <constraint firstItem="EBM-0m-qN7" firstAttribute="top" secondItem="30C-Q0-z00" secondAttribute="bottom" constant="-8" id="3nW-dz-D6V"/>
                                     <constraint firstItem="sEy-Q2-e2q" firstAttribute="trailing" secondItem="EBM-0m-qN7" secondAttribute="trailing" constant="8" id="Myr-k9-LJR"/>
+                                    <constraint firstItem="9eD-Bx-3NU" firstAttribute="centerY" secondItem="A8V-Ky-jUa" secondAttribute="centerY" id="Nf5-K5-CtM"/>
                                     <constraint firstItem="30C-Q0-z00" firstAttribute="top" secondItem="A8V-Ky-jUa" secondAttribute="top" constant="5" id="YkA-PL-hX1"/>
                                     <constraint firstItem="EBM-0m-qN7" firstAttribute="leading" secondItem="xgq-Yi-bYL" secondAttribute="trailing" constant="1" id="cXg-7O-k70"/>
+                                    <constraint firstItem="9eD-Bx-3NU" firstAttribute="centerX" secondItem="A8V-Ky-jUa" secondAttribute="centerX" id="h1U-Wk-RoA"/>
                                     <constraint firstItem="30C-Q0-z00" firstAttribute="leading" secondItem="A8V-Ky-jUa" secondAttribute="leading" constant="5" id="sp6-d8-OYv"/>
                                     <constraint firstItem="xgq-Yi-bYL" firstAttribute="bottom" secondItem="EBM-0m-qN7" secondAttribute="bottom" id="z9F-lU-YkB"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="30C-Q0-z00" secondAttribute="trailing" constant="5" id="zVL-y2-yo2"/>
@@ -440,9 +445,10 @@
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="sEy-Q2-e2q"/>
                                 <connections>
-                                    <outlet property="friendAvatar" destination="30C-Q0-z00" id="5nZ-gj-GBt"/>
+                                    <outlet property="friendPhoto" destination="30C-Q0-z00" id="Wf0-7n-vGd"/>
                                     <outlet property="likeButton" destination="EBM-0m-qN7" id="fj3-ah-Zrr"/>
                                     <outlet property="likeCount" destination="xgq-Yi-bYL" id="s8s-fg-NMs"/>
+                                    <outlet property="preloader" destination="9eD-Bx-3NU" id="crB-Pt-Jcv"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -463,7 +469,7 @@
         <scene sceneID="NxR-3u-gUc">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qq2-9M-2FX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Друзья" image="person" catalog="system" largeContentSizeImage="z" selectedImage="person.fill" id="WDA-Cv-eLY"/>
+                    <tabBarItem key="tabBarItem" title="Друзья" image="person" catalog="system" selectedImage="person.fill" id="WDA-Cv-eLY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1LB-qx-c6a">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
@@ -521,7 +527,6 @@
         <image name="person.3" catalog="system" width="72" height="35"/>
         <image name="person.3.fill" catalog="system" width="71" height="34"/>
         <image name="person.fill" catalog="system" width="64" height="60"/>
-        <image name="z" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="fK0-p1-voe"/>

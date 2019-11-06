@@ -14,12 +14,16 @@ class FriendPageModel {
     var itemImage: UIImage?
     var likesCount: Int
     var notis: String
+    var urlSmalPhoto: String
+    var urlBigPhoto: String
     
-    init(itemId: Int, userId: Int, itemImage: UIImage, likesCount: Int, notis: String) {
+    init(itemId: Int, userId: Int, itemImage: UIImage, likesCount: Int, notis: String, urlSmalPhoto: String, urlBigPhoto: String) {
         self.itemId = itemId
         self.userId = userId
         self.itemImage = itemImage
         self.likesCount = likesCount
         self.notis = notis
+        self.urlSmalPhoto = urlSmalPhoto
+        self.urlBigPhoto = urlBigPhoto
     }
 }
