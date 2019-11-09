@@ -32,14 +32,26 @@ class AllGroupsController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allGroups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "allGroupCell", for: indexPath) as! AllGroupsCell
         cell.allGroupsNameLabel.text = allGroups[indexPath.row].groupName
-        cell.allGroupsImage.image = allGroups[indexPath.row].groupImage ?? UIImage.empty
+        cell.allGroupsImage.image = allGroups[indexPath.row].groupImage ?? UIImage(named: "noimgvk") ?? UIImage.empty
+        
+        if allGroups[indexPath.row].groupId == -1 {
+            cell.preloader.isHidden = false
+            cell.allGroupsImage.isHidden = true
+        } else {
+            cell.preloader.isHidden = true
+            cell.allGroupsImage.isHidden = false
+        }
+        
         return cell
     }
 

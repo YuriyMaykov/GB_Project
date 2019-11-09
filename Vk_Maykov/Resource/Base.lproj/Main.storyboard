@@ -338,7 +338,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w70-WF-Z1t">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w70-WF-Z1t" customClass="AvatarView" customModule="Vk_Maykov" customModuleProvider="target">
                                             <rect key="frame" x="260" y="8" width="44" height="44"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
