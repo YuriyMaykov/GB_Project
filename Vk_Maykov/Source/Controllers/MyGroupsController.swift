@@ -69,7 +69,7 @@ class MyGroupsController: UITableViewController {
     //MARK: - запрос на сервер и обработка данных
     func getDataFromRequest() {
         getAPI.groupsGet(userIdForGroups) {qResult in
-            guard let apiData: [GroupsGetModel.groupsItems] = qResult.response.items else {
+            guard let apiData: [GroupsGetModel.GroupsItems] = qResult.response.items else {
                 print("Ошибка! Запрос не вернул данные! ")
                 return
             }

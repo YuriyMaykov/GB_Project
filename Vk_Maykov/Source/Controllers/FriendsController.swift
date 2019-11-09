@@ -61,25 +61,25 @@ class FriendsController: UITableViewController {
     
     //MARK: - запрос на сервер и обработка данных
     func getDataFromRequest() {
-         getAPI.getFriends { qResult in
-             guard let apiData: [FriendsGetModel.friendsItems] = qResult.response.items else {
-                 print("Ошибка. Нет массива с данными!")
-                 return
-             }
-             self.friendsList.removeAll()
-             if apiData.count > 0 {
-                 for i in apiData {
-                     self.friendsList.append(FriendModel(
+        getAPI.getFriends { qResult in
+            guard let apiData: [FriendsGetModel.FriendsItems] = qResult.response.items else {
+                print("Ошибка. Нет массива с данными!")
+                return
+            }
+            self.friendsList.removeAll()
+            if apiData.count > 0 {
+                for i in apiData {
+                    self.friendsList.append(FriendModel(
                          userId: i.id,
                          userName: (i.lastName ?? "") + " " + (i.firstName ?? ""),
                          userAvatar: UIImage.fromUrl(url: URL(string: i.photo50!)!),
                          userEmail: ""
                          )
-                     )
+                    )
                  }
              }
              self.tableView.reloadData()
-         }
+        }
     }
 
 

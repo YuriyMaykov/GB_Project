@@ -66,9 +66,8 @@ class FriendController: UICollectionViewController {
             if err {
                 cell.friendPhoto.image = UIImage(named: "noimgvk")
             }
-            
+            cell.preloader.isHidden = true
         }
-        cell.preloader.isHidden = true
         return cell
     }
 
@@ -107,7 +106,7 @@ class FriendController: UICollectionViewController {
     var photosCount: Int = 200
     func getDataFromRequest() {
         getAPI.photosGetAll(ownerId: ownerId, offset: photosOffset, count: photosCount) { qResult in
-            guard let apiData: [PhotosGetAllModel.photosItems] = qResult.response.items else {
+            guard let apiData: [PhotosGetAllModel.PhotosItems] = qResult.response.items else {
                  print("Ошибка. Нет массива с данными!")
                  return
              }

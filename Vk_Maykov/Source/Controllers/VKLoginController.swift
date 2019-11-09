@@ -77,15 +77,7 @@ extension VKLoginController: WKNavigationDelegate {
         decisionHandler(.cancel)
         
         if (session.token != "" && session.userId != "" && session.expiresIn != "") {
-            //идем дальше и там будем получать данные
             performSegue(withIdentifier: "fromVKLoginController", sender: self)
-            
-            // ... а пока
-            //FriendsList.shared.friendsConvertData()
-            
-            //getVkAPI.photosGetAll("416682494")
-            //getVkAPI.groupsGet()
-            //getVkAPI.groupsSearch(q: "Xamarin", sort: 5, offset: 0, count: 5)
             
         }
  

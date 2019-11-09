@@ -8,16 +8,16 @@
 
 import UIKit
 class FriendsGetModel {
-    struct friendsList: Decodable {
-        let response: responseHead
+    struct FriendsList: Decodable {
+        let response: ResponseHead
     }
     
-    struct responseHead: Decodable {
+    struct ResponseHead: Decodable {
         let count: Int
-        let items: [friendsItems]
+        let items: [FriendsItems]
     }
     
-    struct friendsItems: Decodable {
+    struct FriendsItems: Decodable {
         let id: Int
         var firstName: String?
         var lastName: String?

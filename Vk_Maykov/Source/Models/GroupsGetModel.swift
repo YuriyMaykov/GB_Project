@@ -8,16 +8,16 @@
 
 import UIKit
 class GroupsGetModel: Decodable {
-    struct groupsList: Decodable {
-        let response: responseHead
+    struct GroupsList: Decodable {
+        let response: ResponseHead
     }
     
-    struct responseHead: Decodable {
+    struct ResponseHead: Decodable {
         let count: Int
-        let items: [groupsItems]
+        let items: [GroupsItems]
     }
     
-    struct groupsItems: Decodable {
+    struct GroupsItems: Decodable {
         let id: Int
         var groupName: String?
         var isClosed: Int?
