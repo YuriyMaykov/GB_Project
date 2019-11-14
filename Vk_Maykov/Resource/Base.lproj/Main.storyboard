@@ -3,7 +3,7 @@
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -149,10 +149,10 @@
         <!--Navigation Controller-->
         <scene sceneID="84q-Fk-vKI">
             <objects>
-                <navigationController id="buo-yJ-5dz" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="buo-yJ-5dz" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="MjL-RU-iva"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1gE-5E-3gL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                        <rect key="frame" x="0.0" y="-20" width="0.0" height="0.0"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -381,7 +381,7 @@
             </objects>
             <point key="canvasLocation" x="144.375" y="469.01408450704224"/>
         </scene>
-        <!--О ...-->
+        <!--Friend Controller-->
         <scene sceneID="8O3-XP-EV7">
             <objects>
                 <collectionViewController id="gd6-h9-gpz" customClass="FriendController" customModule="Vk_Maykov" customModuleProvider="target" sceneMemberID="viewController">
@@ -457,9 +457,7 @@
                             <outlet property="delegate" destination="gd6-h9-gpz" id="mwH-xJ-hhO"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="О ..." leftItemsSupplementBackButton="YES" largeTitleDisplayMode="never" id="Uny-Ik-igI">
-                        <barButtonItem key="backBarButtonItem" title="Friends" id="bMU-vg-9LH"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="Uny-Ik-igI"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6oq-lb-HDE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -513,6 +511,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="fsh-3W-lbw"/>
                     </view>
+                    <navigationItem key="navigationItem" id="MFQ-8d-B8z"/>
                     <connections>
                         <segue destination="buo-yJ-5dz" kind="show" identifier="fromVKLoginController" id="HBC-Og-NKw"/>
                     </connections>
@@ -529,6 +528,6 @@
         <image name="person.fill" catalog="system" width="64" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fK0-p1-voe"/>
+        <segue reference="HBC-Og-NKw"/>
     </inferredMetricsTieBreakers>
 </document>

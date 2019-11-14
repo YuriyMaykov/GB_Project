@@ -8,14 +8,20 @@
 
 import UIKit
 
+
 class FriendsController: UITableViewController {
     
     let getAPI = GetVKAPI()
     var friendsList = FriendsList.shared.items
-    
+    let mng = DataManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        friendsList.append(FriendModel(userId: -1, userName: "", userAvatar: UIImage.empty, userEmail: ""))
+        
+        if !mng.getUsers() {
+            print("Логирование:  чтение из кэш списка друзей - Ошибка!!!")
+            friendsList.append(FriendModel(userId: -1, userName: "", userAvatar: UIImage.empty, urlImgSmall: "", urlImgBig: "", userEmail: ""))
+        }
         getDataFromRequest()
     }
     
@@ -26,10 +32,10 @@ class FriendsController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("=====Generate cell data=====")
         let cell = tableView.dequeueReusableCell(withIdentifier: "friendsCell", for: indexPath) as! FriendsCell
         cell.friendNameLabel.text = friendsList[indexPath.row].userName
-        cell.avatarView.image = friendsList[indexPath.row].userAvatar ?? UIImage.empty
+        //cell.avatarView.image = friendsList[indexPath.row].userAvatar ?? UIImage.empty
+
         if friendsList[indexPath.row].userId == -1 {
             cell.preloader.isHidden = false
             cell.avatarView.isHidden = true
@@ -37,6 +43,15 @@ class FriendsController: UITableViewController {
             cell.preloader.isHidden = true
             cell.avatarView.isHidden = false
         }
+        
+        guard let url = URL(string: friendsList[indexPath.row].urlImgBig)
+            else {
+                cell.avatarView.image = UIImage(named: "noimgvk") ?? UIImage.empty
+                return cell
+        }
+        mng.downLoadImage(url: url, completion: { img in
+            cell.avatarView.image = img ?? UIImage(named: "noimgvk") ?? UIImage.empty
+        })
         
         return cell
     }
@@ -68,18 +83,28 @@ class FriendsController: UITableViewController {
             }
             self.friendsList.removeAll()
             if apiData.count > 0 {
-                for i in apiData {
+                let sortItems = apiData.sorted(by: { ($0.lastName ?? "") < ($1.lastName ?? "")})
+                for i in sortItems {
                     self.friendsList.append(FriendModel(
-                         userId: i.id,
-                         userName: (i.lastName ?? "") + " " + (i.firstName ?? ""),
-                         userAvatar: UIImage.fromUrl(url: URL(string: i.photo50!)!),
-                         userEmail: ""
-                         )
+                        userId: i.id,
+                        userName: (i.lastName ?? "") + " " + (i.firstName ?? ""),
+                        userAvatar: UIImage.empty,      //UIImage.fromUrl(url: URL(string: i.photo50!)!),
+                        urlImgSmall: i.photo50 ?? "",
+                        urlImgBig: i.photo100 ?? "",
+                        userEmail: ""
+                        )
                     )
-                 }
-             }
-             self.tableView.reloadData()
+                }
+            }
+            self.tableView.reloadData()
+            DispatchQueue.global().async {
+                if !self.mng.setUsers(items: self.friendsList) {
+                    print("Логирование:  запись в кэш списка друзей - Ошибка!!!")
+                }
+            }
         }
+
+
     }
 
 

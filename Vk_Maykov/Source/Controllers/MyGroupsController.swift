@@ -12,11 +12,18 @@ class MyGroupsController: UITableViewController {
     
     let getAPI = GetVKAPI()
     var groupsList = GroupsList.shared.items
+    let mng = DataManager()
     var userIdForGroups: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        groupsList.append(GroupModel(groupId: -1, groupName: "", groupImage: UIImage.empty, groupDesc: ""))
+        
+        navigationItem.title = "wwwww"
+        
+        if !mng.getMyGroups() {
+            print("Логирование:  чтение из кэш списка моих групп - Ошибка!!!")
+            groupsList.append(GroupModel(groupId: -1, groupName: "", groupImage: UIImage.empty, groupDesc: "", groupImgUrl: ""))
+        }
         getDataFromRequest()
     }
 
@@ -42,7 +49,7 @@ class MyGroupsController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myGroup", for: indexPath) as! MyGroupsCell
         cell.myGroupNameLabel.text = groupsList[indexPath.row].groupName
-        cell.myGroupImage.image = groupsList[indexPath.row].groupImage ?? UIImage.empty
+        //cell.myGroupImage.image = groupsList[indexPath.row].groupImage ?? UIImage.empty
         if groupsList[indexPath.row].groupId == -1 {
             cell.preloader.isHidden = false
             cell.myGroupImage.isHidden = true
@@ -50,6 +57,16 @@ class MyGroupsController: UITableViewController {
             cell.preloader.isHidden = true
             cell.myGroupImage.isHidden = false
         }
+        
+        guard let url = URL(string: groupsList[indexPath.row].groupImgUrl)
+            else {
+                cell.myGroupImage.image = UIImage(named: "noimgvk") ?? UIImage.empty
+                return cell
+        }
+        mng.downLoadImage(url: url, completion: { img in
+            cell.myGroupImage.image = img ?? UIImage(named: "noimgvk") ?? UIImage.empty
+        })
+
         return cell
     }
 
@@ -81,12 +98,19 @@ class MyGroupsController: UITableViewController {
                         groupId: i.id,
                         groupName: i.groupName ?? "***",
                         groupImage: UIImage.fromUrl(url: URL(string: i.photo50 ?? "")!) ,
-                        groupDesc: ""
+                        groupDesc: "",
+                        groupImgUrl: i.photo50 ?? ""
                         )
                     )
                 }
             }
             self.tableView.reloadData()
+            DispatchQueue.global().async {
+                if !self.mng.setMyGroups(items: self.groupsList) {
+                    print("Логирование:  запись в кэш списка мих групп - Ошибка!!!")
+                }
+            }
+
         }
     }
 

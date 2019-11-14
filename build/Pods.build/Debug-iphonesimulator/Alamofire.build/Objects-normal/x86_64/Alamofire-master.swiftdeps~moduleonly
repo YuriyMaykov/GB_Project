@@ -1,0 +1,21 @@
+version: "Apple Swift version 5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
+options: "479ace23f95533b51c500ce0b2741838"
+build_time: [1573375958, 208619000]
+inputs:
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/AFError.swift": [1572627063, 854680373]
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/Alamofire.swift": [1572627063, 855241265]
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/DispatchQueue+Alamofire.swift": [1572627063, 855558038]
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/MultipartFormData.swift": [1572627063, 856030304]
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/NetworkReachabilityManager.swift": [1572627063, 856408003]
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/Notifications.swift": [1572627063, 856749834]
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/ParameterEncoding.swift": [1572627063, 857079676]
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/Request.swift": [1572627063, 857595963]
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/Response.swift": [1572627063, 858059356]
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/ResponseSerialization.swift": [1572627063, 858463248]
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/Result.swift": [1572627063, 858739879]
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/ServerTrustPolicy.swift": [1572627063, 859074444]
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/SessionDelegate.swift": [1572627063, 859590623]
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/SessionManager.swift": [1572627063, 859897842]
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/TaskDelegate.swift": [1572627063, 860269886]
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/Timeline.swift": [1572627063, 860590241]
+  "/Users/tplus/Desktop/GB_Project/Pods/Alamofire/Source/Validation.swift": [1572627063, 860985820]

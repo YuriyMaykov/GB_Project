@@ -11,11 +11,11 @@ import UIKit
 class AllGroupsController: UITableViewController {
 
     var allGroups: [GroupModel] = [
-        GroupModel(groupId: 1, groupName: "Друзья", groupImage: UIImage(named: "group1")!, groupDesc: "Мои друзья"),
-        GroupModel(groupId: 2, groupName: "Семья", groupImage: UIImage(named: "family")!, groupDesc: "Мои близкие и остальные родственники"),
-        GroupModel(groupId: 3, groupName: "Коллеги", groupImage: UIImage(named: "colleagues")!, groupDesc: "Коллеги по работе"),
-        GroupModel(groupId: 4, groupName: "Руководство", groupImage: UIImage(named: "group2")!, groupDesc: "Руководство"),
-        GroupModel(groupId: 5, groupName: "Черный список", groupImage: UIImage(named: "groupBlack")!, groupDesc: "Забаненые мною пользователи")
+        GroupModel(groupId: 1, groupName: "Друзья", groupImage: UIImage(named: "group1")!, groupDesc: "Мои друзья", groupImgUrl: ""),
+        GroupModel(groupId: 2, groupName: "Семья", groupImage: UIImage(named: "family")!, groupDesc: "Мои близкие и остальные родственники", groupImgUrl: ""),
+        GroupModel(groupId: 3, groupName: "Коллеги", groupImage: UIImage(named: "colleagues")!, groupDesc: "Коллеги по работе", groupImgUrl: ""),
+        GroupModel(groupId: 4, groupName: "Руководство", groupImage: UIImage(named: "group2")!, groupDesc: "Руководство", groupImgUrl: ""),
+        GroupModel(groupId: 5, groupName: "Черный список", groupImage: UIImage(named: "groupBlack")!, groupDesc: "Забаненые мною пользователи", groupImgUrl: "")
     ]
     
     

@@ -24,6 +24,8 @@ class VKLoginController: UIViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         var urlCmps = URLComponents()
         urlCmps.scheme = "https"
         urlCmps.host = "oauth.vk.com"
