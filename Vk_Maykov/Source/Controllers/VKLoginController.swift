@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import WebKit
+import RealmSwift
 
 class VKLoginController: UIViewController, WKUIDelegate {
     
@@ -69,20 +70,42 @@ extension VKLoginController: WKNavigationDelegate {
                 return dict
         }
         
+        print("===== Ответ от сервера авторизации =====")
         print(params)
+        let rqToken = params["access_token"] ?? ""
+        let rqUserId = params["user_id"] ?? ""
+        let rqExpiresIn = params["expires_in"] ?? ""
+        
         
         let session = Session.shared
-        session.token = params["access_token"] ?? ""
-        session.userId = params["user_id"] ?? ""
-        session.expiresIn = params["expires_in"] ?? ""
+        session.token = rqToken
+        session.userId = rqUserId
+        session.expiresIn = rqExpiresIn
         
-        decisionHandler(.cancel)
-        
-        if (session.token != "" && session.userId != "" && session.expiresIn != "") {
-            performSegue(withIdentifier: "fromVKLoginController", sender: self)
+
+        do {
+            let realm = try Realm()
+            try realm.write {
+                if rqToken != "", rqUserId != "" {
+                    if realm.objects(UserSettings.self).first == nil {
+                        let userSettings = UserSettings()
+                        userSettings.id = Int(rqUserId) ?? 0
+                        userSettings.token = rqToken
+                        realm.add(userSettings)
+                    } else {
+                        let userSettings = realm.objects(UserSettings.self).first
+                        userSettings?.id = Int(rqUserId) ?? 0
+                        userSettings?.token = rqToken
+                    }
+                }
+            }
             
+        } catch {
+            print(error)
         }
- 
+
+        performSegue(withIdentifier: "fromVKLoginController", sender: self)
+        decisionHandler(.cancel)
 
     }
 }

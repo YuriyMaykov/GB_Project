@@ -43,6 +43,7 @@
 		F52A76F323781E1A005948D5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A76F223781E1A005948D5 /* DataManager.swift */; };
 		F52A76F5237AF794005948D5 /* UserPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A76F4237AF794005948D5 /* UserPhotos.swift */; };
 		F5C43F4F237D1481007E71B0 /* MyGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C43F4E237D1481007E71B0 /* MyGroups.swift */; };
+		F5C43F51237D707F007E71B0 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C43F50237D707F007E71B0 /* UserSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		F52A76F223781E1A005948D5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F52A76F4237AF794005948D5 /* UserPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPhotos.swift; sourceTree = "<group>"; };
 		F5C43F4E237D1481007E71B0 /* MyGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroups.swift; sourceTree = "<group>"; };
+		F5C43F50237D707F007E71B0 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		FAA90B2791368B0D2A65BCAB /* Pods-Vk_Maykov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vk_Maykov.release.xcconfig"; path = "Target Support Files/Pods-Vk_Maykov/Pods-Vk_Maykov.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -262,6 +264,7 @@
 				F52A76F023781897005948D5 /* User.swift */,
 				F52A76F4237AF794005948D5 /* UserPhotos.swift */,
 				F5C43F4E237D1481007E71B0 /* MyGroups.swift */,
+				F5C43F50237D707F007E71B0 /* UserSettings.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				F529F743237081AA00FF6365 /* PhotosGetAllModel.swift in Sources */,
 				98E6F03B2349F3840015AF7A /* MyGroupsCell.swift in Sources */,
 				F52A76F123781897005948D5 /* User.swift in Sources */,
+				F5C43F51237D707F007E71B0 /* UserSettings.swift in Sources */,
 				98E371DF2350FEDE00EFC312 /* FriendPageModel.swift in Sources */,
 				98E95E7723466B1800E2ABAA /* FriendCell.swift in Sources */,
 				F529F73D23702DB400FF6365 /* GroupsGetModel.swift in Sources */,

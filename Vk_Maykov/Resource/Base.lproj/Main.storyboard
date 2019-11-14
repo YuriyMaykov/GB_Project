@@ -149,7 +149,7 @@
         <!--Navigation Controller-->
         <scene sceneID="84q-Fk-vKI">
             <objects>
-                <navigationController navigationBarHidden="YES" id="buo-yJ-5dz" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainScreen" navigationBarHidden="YES" id="buo-yJ-5dz" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="MjL-RU-iva"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1gE-5E-3gL">
                         <rect key="frame" x="0.0" y="-20" width="0.0" height="0.0"/>
@@ -504,7 +504,7 @@
         <!--Login Controller-->
         <scene sceneID="xrf-ig-IMF">
             <objects>
-                <viewController id="GVh-Hg-xKn" customClass="VKLoginController" customModule="Vk_Maykov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebLoginVC" id="GVh-Hg-xKn" customClass="VKLoginController" customModule="Vk_Maykov" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wKk-Bm-Z6i">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

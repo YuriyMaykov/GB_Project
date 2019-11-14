@@ -24,7 +24,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             })
         Realm.Configuration.defaultConfiguration = config
+        
+        do {
+            let realm = try Realm()
+            let settings = realm.objects(UserSettings.self).first
+            if settings != nil {
+                
+                let cacheTocen = settings?.token
+                let cacheUserId = settings?.id
+                
+                if (cacheTocen != "" && cacheUserId != 0) {
 
+                    Session.shared.token = settings?.token ?? ""
+                    Session.shared.userId = String(settings?.id ?? 0)
+                    
+                    window = UIWindow(frame: CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+                    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                    let mainScreen = storyBoard.instantiateViewController(withIdentifier: "MainScreen")
+                    window?.rootViewController = mainScreen
+                }
+            }
+        } catch {
+            print(error)
+        }
+        
         return true
     }
 
